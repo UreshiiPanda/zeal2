@@ -1,7 +1,24 @@
 <div class="blur-box flex flex-row justify-between items-end h-48">
-    <div class="flex flex-col">
-        <p class="text-2xl text-black">1:13pm</p>
-        <p class="text-3xl text-black">{{city_state}}</p>
+    <div class="flex flex-col h-full justify-between pt-2 pl-4">
+        <div class="flex flex-row gap-1">
+            <input 
+                class="bg-transparent border-black border rounded-sm placeholder-gray-500 text-black"
+                type="text"
+                placeholder="Milwaukee, Wisconsin"
+                (keydown.enter)="search()"
+                [(ngModel)]="city_query"
+            />
+            <button
+                class="bg-blue-500 hover:bg-sky-700 text-white rounded px-3 py-1"
+                (click)="search()"
+            >
+                <i class="pi pi-search" style="font-size: 0.8rem"></i>
+            </button>
+        </div>
+        <div class="">
+            <p class="text-2xl text-black">{{get_time()}}</p>
+            <p class="text-3xl text-black">{{city_state}}</p>
+        </div>
     </div>
     <p class="text-7xl font-bold text-black ml-auto">{{temperature}}°</p>
 </div>
