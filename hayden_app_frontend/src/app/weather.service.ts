@@ -72,26 +72,72 @@ export type WeatherObject = {
   };
 };
 
+type Location = {
+  name: string,
+  latitude: number,
+  longitude: number,
+  country: string,
+  state: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
- private city!: string;
+ private city_state!: string;
  private weather_data_subject = new BehaviorSubject<WeatherObject | null>(null);
  private weather_data$ = this.weather_data_subject.asObservable();
 
   constructor(private http: HttpClient) { }
 
-  search_city(city: string): void {
-    this.city = city;
+  search_city(city_query: string): void {
+    this.city_state = city_query;
+    
+    let [city, state_or_country] = this.clean_location_string(city_query);
 
     const headers = new HttpHeaders().set("X-Api-Key", "zSYVKpJURdCT4e7f4r8beA==gSnnunfC6TnY1yjJ");
-    this.http.get<any[]>(`https://api.api-ninjas.com/v1/geocoding?city=${city}`, { headers })
-      .pipe(map(response => response[0]))
+    this.http.get<Location[]>(`https://api.api-ninjas.com/v1/geocoding?city=${city_query}`, { headers })
+      .pipe(map(response => {
+        
+        let desired_location: Location | null = null;
+        let matches: number = 0;
+
+        response.forEach((location: Location) => {
+          let match = 0;
+          if (city === location.name) ++match;
+          if (state_or_country === location.state || state_or_country === location.country) ++match;
+
+          if (match > matches) {
+            desired_location = location;
+            matches = match;
+            this.city_state = `${desired_location.name}, ${desired_location.state}`
+          }
+        });
+
+        if (!desired_location) {
+          console.log("Bad city query. Use format `city, state` or `city, country`");
+          throw new Error("Bad city query. Use format `city, state` or `city, country`");
+        } else {
+          return desired_location;
+        }
+      }))
       .subscribe({
-        next: data => this.get_weather_data(data.longitude, data.latitude),
+        next: (data: Location) => this.get_weather_data(data.longitude, data.latitude),
         error: error => console.error(error)
     });
+  }
+
+  clean_location_string(city_state: string): [string, string] {
+    let city: string;
+    let state: string;
+
+    if (city_state.includes(',')) [city, state] = city_state.split(',').slice(0, 2);
+    else [city, state] = [city_state, ''];
+    
+    city = city.trim();
+    state = state.trim();
+
+    return [city, state];
   }
 
   get_weather_data(longitude: number, latitude: number) {
@@ -118,7 +164,7 @@ export class WeatherService {
   get_city_state() {
     return this.weather_data$.pipe(
       map(city_state => {
-        return this.city;
+        return this.city_state;
       })
     )
   }
