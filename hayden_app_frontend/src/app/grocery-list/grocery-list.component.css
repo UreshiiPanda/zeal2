@@ -1,0 +1,14 @@
+div.card {
+    min-width: 54vw;
+    background-color: var(--surface-card);
+    padding: 4vh;
+    margin-top: 3vh;
+}
+
+app-grocery-item {
+    flex: 1;
+}
+
+::ng-deep input[pInputText] {
+    font-size: 16px; /* Adjust font size for the input itself */
+}

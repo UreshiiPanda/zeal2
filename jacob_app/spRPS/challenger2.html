@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <header class="header">
+        <h1>
+            Sun Tzu
+            <br/>
+            <br/>
+            
+            
+        
+        </h1>
+
+        </header>
+        <h4 class="secondary-header">
+            <a href="secretproject.html">
+            Quit 
+            </a> 
+    
+        </h4>
+
+        <link rel="stylesheet" href="challenger2.css">
+    </head>
+    <body>
+        <div class="animation-container">
+            <div class="falling-image-container" alt="Falling Image" id="fallingImage" class="falling-image">  
+                <img src="../public/images/suntzu.jpg"
+                         alt="RPS list logo"
+                        height="350 px"
+
+                     >
+            </div>      
+        
+        <br/>
+        <div class="button-container">
+        <br/>
+        
+            <button type="submit" name="Rock" onclick="playRockPaperScissors('rock')">
+                Rock
+            </button>
+            <button type="submit" name="Paper" onclick="playRockPaperScissors('paper')">
+                Paper
+            </button>
+            <button type="submit" name="Scissors" onclick="playRockPaperScissors('scissors')">
+                Scissors
+            </button>
+            <br/>
+            <br/>
+            <div id="resultRPS"></div>
+            <div id="winCount"></div>
+        </div>
+    </div>
+    </body>
+
+    <script src="challenger2.js"></script>
+
+</html>

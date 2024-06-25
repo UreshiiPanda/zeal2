@@ -1,0 +1,15 @@
+#grocery-input {
+    flex: 2;
+}
+
+#quantity-input {
+    flex: 1;
+}
+
+.p-multiselect {
+    width: 30%;
+}
+
+::ng-deep input[pInputText].text {
+    font-size: 16px !important; /* Adjust font size for the input itself */
+}

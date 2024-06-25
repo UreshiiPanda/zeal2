@@ -1,0 +1,122 @@
+/* Set font family */
+body {
+    font-family: 'Courier New', Courier, monospace; /* Retro font */
+    background-color: #ffffcc; /* Light yellow background */
+    color: #333; /* Dark text color */
+  }
+  
+  h1 {
+    text-align: center;
+    color: #0066cc; /* Blue heading color */
+  }
+  
+  h1 img {
+    vertical-align: middle;
+  }
+
+  header {
+    /*background-color: #fff;  Dark background color */
+    color: #fff; /* White text color */
+    padding: px; /* Padding for the content inside the header */
+    text-align: center; /* Center-align the text */
+    font-size: 24px; /* Font size */
+}
+
+.secondary-header {
+  background-color: #0066cc; /* Blue background color */
+  color: #fff; /* White text color */
+  padding: 2px; /* Padding for the content inside the header */
+  text-align: center; /* Center-align the text */
+  font-size: 14px; /* Font size */
+  width: 100%; /* Make header full width */
+  position: fixed; /* Fix the header at the top */
+  left: 0; /* Position it from the left of the viewport */
+  margin: 0; /* Remove default margin */
+  z-index: 1000; /* Ensure it is on top of other content */
+}
+a {
+  color: #fff; /* Set link color to white */
+  text-decoration: none; /* Remove underline */
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px; /* Rounded corners */
+}
+  
+  /* Form styling */
+  form {
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input[type="text"] {
+    padding: 5px;
+    width: 200px;
+    border: 1px solid #ccc;
+  }
+  
+  button[type="submit"] {
+    padding: 5px 20px;
+    background-color: #0066cc; /* Blue button color */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #004080; /* Darker blue on hover */
+  }
+  
+  /* Weather data display */
+  #output {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  /* Table styling */
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+thead th {
+  background-color: #0066cc; /* Blue header background color */
+  color: #fff; /* White header text color */
+  padding: 10px;
+}
+
+tbody td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+tbody td:first-child {
+  font-weight: bold; /* Bold text for first column */
+}
+
+  
+  #city,
+  #date,
+  #temp,
+  #tempMax,
+  #tempMin,
+  #weatherdesc,
+  #weatherhum {
+    margin-bottom: 10px;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    margin-top: 50px;
+    color: #666;
+    font-size: 14px;
+  }

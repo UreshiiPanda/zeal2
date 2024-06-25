@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <header class="header">
+            
+        
+        <h1>
+            Grocery Aid&copy 
+            <br/> 
+            <br/> 
+            <link rel="stylesheet" href="./stylesforhtml/glstyle.css">
+        <img src="./public/images/grocery.png"
+                     alt="grocery list logo"
+                     height="100 px"> 
+        </h1>
+         
+    </header>
+    <h4 class="secondary-header">
+        <a href="index.html">
+        Home 
+        </a> / 
+        <a href="tipcalc.html">
+            Tip Calculator
+        </a> / 
+        <a href="RPS.html">
+        Rock Paper Scissors
+        </a> / 
+         <a href="weather.html">
+         Weather
+         </a>
+
+    </h4>
+    </head>
+    <body>
+        <br/>
+        
+        <form>
+            <label for="gldata">List Maker Pro:</label>
+            <input type="text" id="gldata" name="gldata" required />
+            <button type="button" onclick="addData()">
+                Add item
+            </button>
+        </form>
+
+        <table id="dataTable" border=".5">
+            <thead>
+                <tr>
+                    <th colspan="2">Data</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+
+        <script src="./jsForWebApp/GL.js"></script>
+    </body>
+</html>

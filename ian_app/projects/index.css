@@ -1,0 +1,165 @@
+img{
+    margin-top:-50px;
+    margin-left:20px;
+}
+body {
+    background-color:white;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    color: black;
+    background-color: white;
+    padding: 20px;
+    text-align: flex;
+    width: 30%;
+    font-size:20px;
+}
+
+.top-buttons {
+    font-family:georgia;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    margin-top: -100px;
+}
+
+.button {
+    font-family:georgia;
+    margin-right: 0; /* Remove margin between buttons */
+}
+
+.button:last-child {
+    font-family:georgia;
+    margin-right: 10px; /* Add margin to the last button */
+}
+
+.button a {
+    font-family:georgia;
+    text-decoration: none;
+}
+
+.button button {
+    font-size:15px;
+    font-family:georgia;
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 25px 30px; /* Adjusted padding for a better button size */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition on hover */
+    cursor:pointer;
+}
+
+.button button:hover {
+    text-decoration:underline;
+    text-decoration-color:black;
+    text-decoration-thickness:2.5px;
+}
+/* Add this CSS to your homepage.css file */
+
+.header-button {
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s; /* Add color transition */
+}
+
+.header-button:hover {
+    text-decoration:underline;
+    text-decoration-color:black;
+    text-decoration-thickness:2.5px;
+}
+
+/* Add this to prevent visited links from changing color */
+.header-button:visited {
+    color: black;
+}
+
+/* Add this to prevent active links from changing color */
+.header-button:active {
+    color: black;
+    background-color: white;
+}
+.bubble{
+    font-size:15px;
+    padding:7.1px 100px;
+    color:black;
+    width: fit-content;
+    position: absolute; /* Set position to absolute */
+    top: .5px; 
+    right: 815px; 
+    font-family:georgia;
+}
+.textbubble{
+    font-family:georgia;
+    align-items: center;
+    justify-content:center;
+    text-align:center;
+    border-radius:10px;
+    width:300px;
+    height:300px;
+    background-color: white;
+    background-image: url('https://png.pngtree.com/background/20231101/original/pngtree-high-resolution-minimalistic-modern-design-of-an-abstract-white-shape-background-picture-image_5826905.jpg');
+}
+.text-bubbly{
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: 200px;
+}
+.text-bubbles-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.text-bubbles {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: 200px;
+    margin: 0 10px; /* Adjust spacing between text bubbles */
+}
+
+/* Optional: Add a border to the text bubbles */
+.text-bubble {
+    border: 1px solid #ccc;
+}
+.text-bubble {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.text-bubble:hover::after {
+    content: "to innovate.";
+}
+
+.text-bubble::after {
+    content: "to simplify.";
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f0f0f0;
+    padding: 5px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.text-bubble:hover::after {
+    opacity: 1;
+}
+h1{
+    margin-top:100px;
+    color:black;
+}
+

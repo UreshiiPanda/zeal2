@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <header>
+        <h1>
+            Whats the weather?
+        <img src="./public/images/weather.png"
+                     alt="weather list logo"
+                     height="100 px"
+
+                     >
+        </h1>
+        
+        </header>
+        <h4 class="secondary-header">
+            <a href="index.html">
+            Home 
+            </a> / 
+            <a href="GL.html">
+                Grocery List
+            </a> / 
+            <a href="RPS.html">
+            Rock Paper Scissors
+            </a> / 
+             <a href="tipcalc.html">
+             Tip calculator
+             </a>
+
+        </h4>
+    </head>
+    <body>
+        <br/>
+        
+        <form id="cityinput">
+            <label for="cityname">Insert city name:</label>
+            <input type="text" id="cityname" name="cityname" required />
+            <!--triggers a api call with a fixed hyperlink-->
+            <button type="submit">Get data</button>
+            <!--<button id="fetchDataBtn">Fetch Data</button>-->
+            <!-- Placeholder for displaying API response -->
+            <div id="output"></div>
+
+        </form>
+
+        <table id="weatherData" border=".5">
+            <thead>
+                <tr>
+                    <th>Weather Data</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="tableWeather">
+            </tbody>
+        </table>
+
+    </body>
+    <script src="./jsForWebApp/weather.js"></script>
+    <link rel="stylesheet" href="./stylesforhtml/weatherstyle.css">
+
+</html>

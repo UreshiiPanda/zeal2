@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel ="stylesheet" href="list.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <a href="homepage.html">
+            <button type="button">Home</button>
+        </a>
+        <strong>
+            <div class="center-both">
+              <p id="currentTime"></p>
+              <script src="tip.js"></script>
+            </strong>
+            </div>
+        <div class="label">
+        <div class="calculator">
+            <h1>Grocery List</h1>
+            <input type="text" id="itemInput" placeholder="Ex: Bananas">
+            <button onclick="addItem()">Add Item</button>
+            <ul id="groceryList"></ul>
+        </div>
+    <script>
+        function addItem() {
+            var inputText = document.getElementById("itemInput").value.trim();
+            if (inputText !== "") {
+                var listItem = document.createElement("li");
+                listItem.textContent = inputText;
+                //Defines the variable needed to remove an item.
+                var removeButton = document.createElement("button");
+                //Makes the action visible as "Remove"
+                removeButton.textContent = "Remove";
+                //When the button is clicked, it will commit the action remove.
+                removeButton.onclick = function() {
+                    listItem.remove();
+                };
+                
+                listItem.appendChild(removeButton);
+                document.getElementById("groceryList").appendChild(listItem);
+                
+                document.getElementById("itemInput").value = "";
+            } else {
+                alert("You didn't type anything!");
+            }
+        }
+    </script>
+</div>
+</body>
+</html>

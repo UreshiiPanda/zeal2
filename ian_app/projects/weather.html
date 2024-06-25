@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Daily Docket</title>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+    <header class="mb-8">
+        <h1 class="text-4xl font-bold text-gray-800"style="color: #00a69c;">Weather</h1>
+    </header>
+    <strong><div id="clock"style="color: #00a69c;"></div></strong>
+    <div id="currentTime" class="text-lg"style="color: #00a69c;"></div>
+    <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+        <h2 class="text-xl mb-2 text-gray-700">City:</h2>
+        <div class="flex mb-4">
+            <input type="text" id="cityInput" class="border border-gray-300 rounded-l px-4 py-2 flex-grow" placeholder="Ex: Seattle">
+            <button onclick="getWeather()" class="bg-blue-500 text-white px-4 py-2 rounded-r">Enter</button>
+        </div>
+        <div class="mb-4">
+            <p class="text-gray-700">The current temperature is: <span id="temperature" class="font-semibold"style="color: #00a69c;"></span></p>
+        </div>
+        <div class="mb-4">
+            <p class="text-gray-700">The high today will be: <span id="temperaturehigh" class="font-semibold"style="color: #00a69c;"></span></p>
+        </div>
+        <div class="mb-4">
+            <p class="text-gray-700">The low today will be: <span id="temperaturelow" class="font-semibold"style="color: #00a69c;"></span></p>
+        </div>
+        <div class="mb-4">
+            <p class="text-gray-700">It currently feels like it's: <span id="feelslike" class="font-semibold"style="color: #00a69c;"></span></p>
+        </div>
+        <div class="mb-4">
+            <p class="text-gray-700">The humidity percentage is: <span id="outside" class="font-semibold"style="color: #00a69c;"></span></p>
+        </div>
+        <div class="mb-4">
+            <p class="text-gray-700">There are currently: <span id="rain" class="font-semibold"style="color: #00a69c;"></span></p>
+        </div>
+        <div class="mb-4">
+            <p class="text-gray-700">The sun will rise at: <span id="sunrise" class="font-semibold"style="color: #00a69c;"></span></p>
+        </div>
+        <div class="mb-4">
+            <p class="text-gray-700">The windspeed is currently: <span id="windspeed" class="font-semibold"style="color: #00a69c;"></span></p>
+        </div>
+    </div>
+    <script src="test.js"></script>
+    <script src="./weather.js"></script>
+</body>
+</html>

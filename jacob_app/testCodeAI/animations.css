@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.falling-image-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.falling-image {
+    width: 250px;
+    height: 350px;
+    border-radius: px;
+    position: absolute;
+    top: -100px; /* Start above the visible area */
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: none; /* Initially hidden */
+}
+
+.animate {
+    display: block; /* Show the image */
+    animation: fallToCenter 2s forwards; /* Animation lasts 2 seconds and then stops */
+}
+
+@keyframes fallToCenter {
+    0% {
+        top: -100px; /* Start position (above the screen) */
+    }
+    100% {
+        top: calc(40vh - 40px); /* End position (center of the screen) */
+    }
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Demo</title>
+</head>
+<body>
+  <!-- HTML form to collect the dynamic part of the URL -->
+  <form id="urlForm">
+    <label for="urlInput">Enter URL:</label>
+    <input type="text" id="urlInput" name="urlInput">
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Button to trigger API call -->
+  <button id="fetchDataBtn">Fetch Data</button>
+  <!-- Placeholder for displaying API response -->
+  <div id="output"></div>
+
+  <script>
+    // Add event listener to the form submission
+    document.getElementById('urlForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+      // Get the value from the input field
+      var dynamicPart = document.getElementById('urlInput').value.trim();
+      // Call fetchData with the dynamic part of the URL
+      fetchData(dynamicPart);
+    });
+
+    // Function to fetch data from the API
+    function fetchData(dynamicPart) {
+      // Make a GET request to the API endpoint with the dynamically changed URL
+      fetch('https://api.openweathermap.org/data/2.5/weather?q=' + dynamicPart + '&appid=9132cf957c83d30c2a87fadebb3d2364')
+        // Parse response as JSON
+        .then(response => response.json())
+        // Handle the JSON data
+        .then(data => {
+          // Clear previous content in the output div
+          document.getElementById('output').innerHTML = '';
+
+          // Function to recursively iterate through the object and its nested properties
+          function displayObject(obj, parentKey = '') {
+            for (var key in obj) {
+              if (obj.hasOwnProperty(key)) {
+                // Check if the value is an object (nested object)
+                if (typeof obj[key] === 'object' && obj[key] !== null) {
+                  // If it's an object, recursively call displayObject with the nested object
+                  displayObject(obj[key], parentKey + key + '.');
+                } else {
+                  // If it's not an object, create a new paragraph element
+                  var paragraph = document.createElement('p');
+                  // Set the text content of the paragraph to key: value
+                  paragraph.textContent = parentKey + key + ': ' + obj[key];
+                  // Append the paragraph to the output div
+                  document.getElementById('output').appendChild(paragraph);
+                }
+              }
+            }
+          }
+
+          // Call the displayObject function with the top-level object
+          displayObject(data);
+        })
+        // Catch any errors that occur during the fetch
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+  </script>
+</body>
+</html>

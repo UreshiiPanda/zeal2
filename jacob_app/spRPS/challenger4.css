@@ -1,0 +1,158 @@
+/* Reset default margin and padding */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply background color */
+body {
+    background-color: #ffffcc; /* Light yellow background */
+    font-family: 'Courier New', Courier, monospace; /* Retro font */
+    background-image: url('../public/images/roman.jpg');
+    background-size: cover;      /* Scale the image to cover the entire element */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    height: 100vh;               /* Ensure the body takes the full height of the viewport */
+    margin: 0;     
+}
+
+/* Style the h1 heading */
+h1 {
+    font-size: 24px;
+    color: #000000; /* Light yellow background */
+    text-align: center;
+    margin-top: 30px;
+}
+
+.header {
+    background-color: #ffffcc; /* Dark background color */
+    color: #000000;; /* White text color */
+    padding: 5px; /* Padding for the content inside the header */
+    text-align: center; /* Center-align the text */
+    font-size: 24px; /* Font size */
+}
+.secondary-header {
+    background-color: #ffffcc; /* Blue background color */
+    color: #000000;; /* White text color */
+    padding: 2px; /* Padding for the content inside the header */
+    text-align: center; /* Center-align the text */
+    font-size: 14px; /* Font size */
+  }
+  a {
+    color: #000000;; /* Set link color to white */
+    text-decoration: none; /* Remove underline */
+  }
+
+/* Style the image */
+img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Style the form */
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style the label */
+label {
+    font-size: 16px;
+    color: #000000; /* Black color */
+}
+
+/* Style the input field */
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #999999; /* Gray border */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Style the button */
+button {
+    background-color: #ffffcc; /* Orange background */
+    color: #000000;; /* White text */
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace; /* Retro font */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+
+/* Hover effect for the button */
+button:hover {
+    background-color: #14cc00; /* Darker orange on hover */
+}
+
+/* Style the table */
+table {
+    width: 80%; /* Table takes up 80% of the width */
+    margin: 20px auto; /* Center the table */
+    border-collapse: collapse; /* Collapse borders */
+}
+
+/* Style the table header */
+th {
+    background-color: #d900ff; /* Orange background */
+    color: #ffffff; /* White text */
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #999999; /* Gray border */
+}
+
+/* Style the table data */
+td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #999999; /* Gray border */
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.falling-image-container {
+    position: relative;
+    width: 100%; /* Full width of the viewport */
+    height: 100%; /* Full height of the viewport */
+}
+
+.falling-image {
+    width: 250px;
+    height: 350px;
+    border-radius: 15px;
+    position: absolute;
+    top: -100px; /* Start above the visible area */
+    left: 50%;
+    transform: translateX(-50%);
+    display: none; /* Initially hidden */
+}
+
+.animation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.animate {
+    display: block; /* Show the image */
+    animation: fallToCenter 2s forwards; /* Animation lasts 2 seconds and then stops */
+}
+
+@keyframes fallToCenter {
+    0% {
+        top: -700px; /* Start position (above the screen) */
+    }
+    100% {
+        top: calc(2vh - 2px); /* End position (center of the screen) */
+    }
+}

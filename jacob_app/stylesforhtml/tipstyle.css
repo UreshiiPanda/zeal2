@@ -1,0 +1,110 @@
+/* Reset default margin and padding */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply background color */
+body {
+    background-color: #ffffcc; /* White background */
+    font-family: 'Courier New', Courier, monospace; /* Retro font */
+}
+
+/* Style the h1 heading */
+h1 {
+    font-size: 24px;
+    color:#ffffcc; /* Money green color */
+    text-align: center;
+    margin-top: 10px;
+}
+.header {
+    background-color: #008000; /* Dark background color */
+    color: #fff; /* White text color */
+    padding: 5px; /* Padding for the content inside the header */
+    text-align: center; /* Center-align the text */
+    font-size: 24px; /* Font size */
+}
+.secondary-header {
+    background-color: #008000; /* Blue background color */
+    color: #fff; /* White text color */
+    padding: 2px; /* Padding for the content inside the header */
+    text-align: center; /* Center-align the text */
+    font-size: 14px; /* Font size */
+  }
+  a {
+    color: #ffffcc; /* Set link color to white */
+    text-decoration: none; /* Remove underline */
+  }
+
+
+/* Style the h5 heading */
+h5 {
+    font-size: 16px;
+    color: #008000; /* Black color */
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Style the image */
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Style the form */
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+/* Style the label */
+label {
+    font-size: 16px;
+    color: #000000; /* Black color */
+}
+
+/* Style the input field */
+input[type="number"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #999999; /* Gray border */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Style the button */
+button {
+    background-color: #008000; /* Orange background */
+    color: #ffffcc; /* White text */
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+/* Hover effect for the button */
+button:hover {
+    background-color: #CC5500; /* Darker orange on hover */
+}
+
+/* Style the result div */
+#result {
+    font-size: 18px;
+    color: #000000; /* Black color */
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style the result2 div */
+#result2 {
+    font-size: 18px;
+    color: #000000; /* Black color */
+    text-align: center;
+    margin-top: 10px;
+}
+

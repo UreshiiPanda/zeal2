@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <header class="header">
+        <h1>
+            EasyTip! &copy
+            <br/>
+            <br/>
+        <img src="./public/images/tipjar.jpg"
+                     alt="Tip calculator list logo"
+                     height="100 px"
+
+                     >
+        
+        </h1>
+    </header>
+    <h4 class="secondary-header">
+        <a href="index.html">
+        Home 
+        </a> / 
+        <a href="GL.html">
+            Grocery List
+        </a> / 
+        <a href="RPS.html">
+        Rock Paper Scissors
+        </a> / 
+         <a href="weather.html">
+         Weather
+         </a>
+
+    </h4>
+    
+    </head>
+    <body></body>
+        
+        <form id="form1">
+            <p>Tip Percentage : <span id="slide"></span></p>
+            <div class="slidecontainer">
+                Select your Tip 1% <input type="range" min="1" max="100" value="50" class="slider" id="myRange"> 100%
+              </div>
+            <label for="totalBill">Enter your total bill:</label>
+            <input type="number" id="totalBill" name="totalBill" required />
+            <button type="button" onclick="calculateTip()">
+                Add Tip:
+            </button>
+            <br/>
+        </form>
+        
+        <script>
+            var slider = document.getElementById("myRange");
+            var output = document.getElementById("slide");
+            output.innerHTML = slider.value;
+            
+            slider.oninput = function() {
+              output.innerHTML = this.value;
+            }
+            </script>
+        
+        
+
+        <div id="result"></div>
+        <div id="result2"></div>
+
+
+        
+    </body>
+
+    <script src="./jsForWebApp/tipcalc.js"></script>
+    <link rel="stylesheet" href="./stylesforhtml/tipstyle.css">
+    
+</html>

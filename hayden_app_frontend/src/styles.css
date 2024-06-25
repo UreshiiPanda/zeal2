@@ -1,0 +1,124 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/arya-orange/theme.css";
+@import "primeng/resources/primeng.css";
+
+@import "primeicons/primeicons.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+div.fullscreen {
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+div.centered {
+    display: flex;
+    justify-content: center;
+}
+
+div.blur-box {
+    background: rgba(255, 255, 255, 0.4); /* White with 30% opacity */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    border-radius: 10px; /* Optional: rounded corners */
+    padding: 20px;
+}
+
+.large-margin-bottom {
+    margin-bottom: 5vh;
+}
+
+.medium-margin-bottom {
+    margin-bottom: 2vh;
+}
+
+.small-mragin-bottom {
+    margin-bottom: 1vh;
+}
+
+div.vbox {
+    display: flex;
+    flex-direction: column;
+}
+
+div.hbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.button {
+    width: 130px;
+    height: 50px
+}
+
+.dropdown {
+    height: 40px;
+    width: 150px;
+}
+
+.dropdown-item {
+    font-size: 30px;
+}
+
+.gap {
+    gap: 2vh;
+}
+
+label {
+    font-size: 36px;
+}
+
+/* DROPDOWN */
+
+.custom-dropdown .p-dropdown {
+    padding: 5px;
+}
+
+.custom-dropdown .p-dropdown-label {
+    font-size: 36px !important; /* Font for selected */
+    height: 40px;
+    line-height: 40px;
+}
+
+.custom-dropdown .p-dropdown-panel {
+    font-size: 36px !important; /* Font for dropdown */
+}
+
+.p-dropdown-item > span {
+    margin: 5px;
+}
+
+/* Checkboxes */
+
+.p-checkbox.p-component {
+    margin-right: 5px;
+}
+
+.p-checkbox-label {
+    font-size: 24px;
+}
+
+/* Input Text */
+
+input[pInputText].text {
+    border: 1px solid var(--primary-color);
+    border-radius: 3px;
+    padding: 5px;
+    height: 40px;
+    /* background-color: #121212; */
+    background-color: var(--surface-0)
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Screen App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="screen1" class="screen">
+        <h1>Screen 1</h1>
+        <button id="rockbutton">Check Result</button>
+        <p id="output"></p>
+    </div>
+    <script>
+        document.getElementById('rockbutton').addEventListener('click', () => {
+            // Define result1 for demonstration
+            const result1 = "Rock";
+
+            // Check if result1 is "Rock"
+            if (result1 === "Rock") {
+                // Print "Tie!" if the condition is met
+                document.getElementById('output').innerText = "Tie!";
+            } else {
+                // Print "Not a Tie!" if the condition is not met (optional)
+                document.getElementById('output').innerText = "Not a Tie!";
+            }
+        });
+
+        // Show the first screen initially
+        document.addEventListener('DOMContentLoaded', () => {
+            showScreen('screen1');
+        });
+
+        // Function to show a specific screen and hide the others
+        function showScreen(screenId) {
+            // Get all screen elements
+            const screens = document.querySelectorAll('.screen');
+            
+            // Hide all screens
+            screens.forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            // Show the selected screen
+            document.getElementById(screenId).classList.add('active');
+        }
+    </script>
+</body>
+</html>

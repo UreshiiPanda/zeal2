@@ -1,0 +1,113 @@
+/* Reset default margin and padding */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply background color */
+body {
+    background-color: #ffffcc; /* Light yellow background */
+    font-family: 'Courier New', Courier, monospace; /* Retro font */
+}
+
+/* Style the h1 heading */
+h1 {
+    font-size: 24px;
+    color: #ffffcc; /* Light yellow background */
+    text-align: center;
+    margin-top: 30px;
+}
+
+.header {
+    background-color: #d900ff; /* Dark background color */
+    color: #ffffcc;; /* White text color */
+    padding: 5px; /* Padding for the content inside the header */
+    text-align: center; /* Center-align the text */
+    font-size: 24px; /* Font size */
+}
+.secondary-header {
+    background-color: #d900ff; /* Blue background color */
+    color: #ffffcc;; /* White text color */
+    padding: 2px; /* Padding for the content inside the header */
+    text-align: center; /* Center-align the text */
+    font-size: 14px; /* Font size */
+  }
+  a {
+    color: #ffffcc;; /* Set link color to white */
+    text-decoration: none; /* Remove underline */
+  }
+
+/* Style the image */
+img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Style the form */
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style the label */
+label {
+    font-size: 16px;
+    color: #000000; /* Black color */
+}
+
+/* Style the input field */
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #999999; /* Gray border */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Style the button */
+button {
+    background-color: #d900ff; /* Orange background */
+    color: #ffffcc;; /* White text */
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace; /* Retro font */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+/* Hover effect for the button */
+button:hover {
+    background-color: #CC5500; /* Darker orange on hover */
+}
+
+/* Style the table */
+table {
+    width: 80%; /* Table takes up 80% of the width */
+    margin: 20px auto; /* Center the table */
+    border-collapse: collapse; /* Collapse borders */
+}
+
+/* Style the table header */
+th {
+    background-color: #d900ff; /* Orange background */
+    color: #ffffff; /* White text */
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #999999; /* Gray border */
+}
+
+/* Style the table data */
+td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #999999; /* Gray border */
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 30px;
+}

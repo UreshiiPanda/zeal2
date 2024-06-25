@@ -1,0 +1,94 @@
+<p-dialog 
+    header="Add Item"
+    draggable="false"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ height: '80%', width: '50%' }"
+    (onHide)="on_exit()"
+>
+    <div id="dialog" style="padding: 3vh">
+        <div class="vbox" style="margin-bottom: 5vh;">
+            <div class="hbox" style="align-items: flex-start; gap: 1.5vw;">
+                <div class="vbox gap">
+                    <div id="grocery-input" class="vbox">
+                        <label for="grocery_input">Grocery</label>
+                        <input 
+                            type="text"
+                            class="text"
+                            pInputText
+                            [(ngModel)]="temp_grocery.grocery"
+                            inputId="grocery_input"
+                            variant="outline"
+                        />
+                    </div>
+                    <div class="hbox gap">
+                        <div id="quantity-input" class="vbox">
+                            <label for="quantity_input">Quantity</label>
+                            <p-inputNumber
+                                [(ngModel)]="temp_grocery.quantity"
+                                [style]="{height: '40px'}"
+                                [showButtons]="true"
+                                buttonLayout="horizontal"
+                                inputId="quantity_input"
+                                spinnerMode="horizontal"
+                                [step]="1"
+                                [size]="5"
+                                [inputStyle]="{paddingLeft: '5px'}"   
+                                decrementButtonClass="p-button-secondary"
+                                incrementButtonClass="p-button-secondary" 
+                                incrementButtonIcon="pi pi-plus"
+                                decrementButtonIcon="pi pi-minus"
+                            />
+                        </div>
+                        <div class="vbox">
+                            <label for="grocery_units">Units</label>
+                            <input
+                                type="text"
+                                class="text"
+                                pInputText
+                                [(ngModel)]="temp_grocery.units"
+                                inputId="grocery_quantity"
+                            />
+                        </div>
+                        <div class="vbox">
+                            <label for="calendar-12h" class="font-bold block mb-2">Pick Up</label>
+                            <p-calendar 
+                                inputId="calendar-12h" 
+                                [style]="{height: '40px'}"
+                                [(ngModel)]="js_due_date"
+                                (ngModelChange)="update_temp_grocery_date()"
+                                [showTime]="true" 
+                                [hourFormat]="'12'"
+                            />
+                        </div>
+                    </div>
+                    <div class="vbox">
+                        <label for="assigned_input">Assigned</label>
+                        <input
+                            type="text"
+                            class="text"
+                            pInputText
+                            [(ngModel)]="temp_grocery.assigned"
+                            inputId="assigned_input"/>
+                    </div>
+                </div>
+                <div class="vbox">
+                    <label for="tag-filters">Tag Filters</label>
+                    <div *ngFor="let tag_option of this.grocery_list_service.get_tag_options()" class="field-checkbox">
+                        <p-checkbox
+                            [(ngModel)]="temp_grocery.tags"
+                            [label]="tag_option"
+                            name="group"
+                            [value]="tag_option"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-grocery-item [grocery]="temp_grocery" [preview]="true"/>
+        <div class="hbox centered" style="gap: 3vw; margin-top: 5vh">
+            <p-button label="Cancel" styleClass="button" severity="secondary" (click)="visible = false" />
+            <p-button label="Save" styleClass="button" (click)="save()" />
+        </div>
+    </div>
+</p-dialog>

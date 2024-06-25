@@ -1,0 +1,88 @@
+<div class="fullscreen">
+    <div class="centered">
+        <div class="card">
+            <div class="centered vbox gap">
+                <div class="hbox gap">
+                    <a href="https://2024-internship.vercel.app/tips.html">Tip Calculator</a>
+                    <a href="https://first-zeal-voyage.vercel.app/">Grocery List</a>
+                    <a href="https://jacobgiboney.github.io/Web_App_Zeal_Intern/spRPS/secretproject.html">Rock Paper Scissors</a>
+                    <a href="https://2024-internship.vercel.app/weather.html">Weather Dashboard</a>
+                </div>
+                <h1 [style]="{fontSize: '48px'}">Grocery List</h1>
+                <div class="hbox" style="gap: 3vw; align-items: flex-start;">
+                    <div class="vbox" style="flex: 1; gap: 3vh;">
+                        <div class="vbox">
+                            <label for="search">Search</label>
+                            <input 
+                                pInputText
+                                class="text"
+                                type="text"
+                                [(ngModel)]="query" />
+                            
+                        </div>
+                        <div class="hbox gap">
+                            <div class="vbox" style="flex: 1;">
+                                <label for="filter-dates">Date Filters</label>
+                                <p-dropdown 
+                                    id="filter-dates"
+                                    class="custom-dropdown"
+                                    [style]="{width: '100%'}"
+                                    [options]="due_options" 
+                                    [showClear]="true"
+                                    [(ngModel)]="due_filter"/>
+                            </div>
+                            <div class="vbox" style="flex: 1;">
+                                <label for="sort">Sort</label>
+                                <p-dropdown
+                                    [options]="sort_options" 
+                                    class="custom-dropdown"
+                                    [style]="{width: '100%'}"
+                                    [(ngModel)]="sort_selected" 
+                                    [checkmark]="true" 
+                                    [showClear]="true"
+                                    id="sort"/>
+                            </div>
+                        </div>
+                        <p-button 
+                            label="Add Grocery"
+                            [style]="{width: '100%'}"
+                            (onClick)="toggle_create_menu()"
+                            styleClass="button"
+                        />
+                    </div>
+                    <div class="vbox" style="gap: 10px;">
+                        <label for="tag-filters">Tag Filters</label>
+                        <div *ngFor="let tag_option of this.grocery_list_service.get_tag_options()" class="field-checkbox">
+                            <p-checkbox
+                                [(ngModel)]="tag_filters"
+                                [label]="tag_option"
+                                name="group"
+                                [value]="tag_option"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="vbox">
+                    <div *ngFor="let grocery of search_filter_sort()">
+                        <ng-template #grocery_template let-grocery="grocery">
+                            <app-grocery-item [grocery]="grocery"/>
+                        </ng-template>
+                        <ng-template #actions_template let-grocery="grocery">
+                            <app-action-buttons [grocery]="grocery" [post_date]="grocery.posted"/>
+                        </ng-template>
+    
+                        <div class="hbox" style="flex: 1">
+                            <ng-container *ngTemplateOutlet="grocery_template; context: {grocery: grocery}"/>
+                            <ng-container *ngTemplateOutlet="actions_template; context: {grocery: grocery}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-edit-creation-popup
+    [visible]="create_menu_visible"
+    [mode]="'create'"
+    (exit)="toggle_create_menu()"
+/>

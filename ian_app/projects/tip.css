@@ -1,0 +1,74 @@
+body 
+{
+    font-family: Monospace;
+    margin: 0;
+    padding: 0;
+}
+
+.container 
+{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.calculator 
+{
+    font-family: Monospace;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+label 
+{
+    font-family: Monospace;
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="number"], button 
+{
+    font-family: Monospace;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button 
+{
+    background-color: #eb621d00;
+    color: #299ae0;
+    border: #000000;
+    cursor: pointer;
+}
+
+button:hover 
+{
+    background-color: #299ae0;
+    color:white
+}
+
+#tipAmount, #totalAmount
+{
+    margin-top: 16px;
+    font-weight: bold;
+}
+
+.center-both
+{
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    padding: 20px;
+    margin-bottom:16px;
+    border: 1px solid ;
+    border-radius:3px;
+    box-sizing:border-box;
+
+}
