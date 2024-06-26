@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-COPY . /usr/share/nginx/html
+COPY . /usr/share/nginx/html/app2
 
 EXPOSE 80
 
