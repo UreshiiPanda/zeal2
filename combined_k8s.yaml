@@ -15,9 +15,16 @@ spec:
     spec:
       containers:
       - name: angular-app
-        image: gcr.io/$PROJECT_ID/angular-app
+        image: gcr.io/zeal-intern/angular-app:latest
         ports:
         - containerPort: 80
+        resources:    
+          requests:
+            cpu: 250m
+            memory: 512Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
 ---
 apiVersion: v1
 kind: Service
@@ -46,9 +53,17 @@ spec:
     spec:
       containers:
       - name: html-css-js-app1
-        image: gcr.io/$PROJECT_ID/html-css-js-app1
+        image: gcr.io/zeal-intern/html-css-js-app1:latest
         ports:
         - containerPort: 80
+        resources:    
+          requests:
+            cpu: 250m
+            memory: 512Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+
 ---
 apiVersion: v1
 kind: Service
@@ -77,9 +92,17 @@ spec:
     spec:
       containers:
       - name: html-css-js-app2
-        image: gcr.io/$PROJECT_ID/html-css-js-app2
+        image: gcr.io/zeal-intern/html-css-js-app2:latest
         ports:
         - containerPort: 80
+        resources:    
+          requests:
+            cpu: 250m
+            memory: 512Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+
 ---
 apiVersion: v1
 kind: Service
@@ -108,12 +131,20 @@ spec:
     spec:
       containers:
       - name: node-backend
-        image: gcr.io/$PROJECT_ID/node-backend
+        image: gcr.io/zeal-intern/node-backend:latest
         ports:
         - containerPort: 4000
         envFrom:
         - secretRef:
             name: tidb-secrets
+        resources:    
+          requests:
+            cpu: 250m
+            memory: 512Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+
 ---
 apiVersion: v1
 kind: Service
