@@ -71,7 +71,7 @@ export class CompassComponent {
       let color: string;
       if (deg % 90 === 0) color = 'black';
       else if (deg % 30 === 0) color = 'red';
-      else color = 'gray';
+      else color = 'rgb(55, 65, 81)';
 
       this.dial_lines.push({
         p1: inside_point,

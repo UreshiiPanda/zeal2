@@ -1,11 +1,14 @@
 import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { DateTime } from 'luxon'
 import { Subscription } from 'rxjs';
 import { WeatherService } from '../../weather.service';
 @Component({
   selector: 'app-city-header',
   standalone: true,
-  imports: [],
+  imports: [
+    FormsModule
+  ],
   templateUrl: './city-header.component.html',
   styleUrl: './city-header.component.css'
 })
@@ -28,5 +31,15 @@ export class CityHeaderComponent {
   ngOnDestroy() {
     if (this.temperature_subscription) this.temperature_subscription.unsubscribe();
     if (this.city_subscription) this.city_subscription.unsubscribe();
+  }
+
+  get_time(): string {
+    return DateTime.now().toLocaleString(DateTime.TIME_SIMPLE);
+  }
+
+  search(): void {
+    if (!this.city_query) return;
+    this.weather_service.search_city(this.city_query);
+    this.city_query = '';
   }
 }
