@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/luxon": "^3.4.2",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4"
+  },
+  "dependencies": {
+    "@angular/core": "^18.0.4",
+    "luxon": "^3.4.4",
+    "primeng": "^17.18.1"
+  }
+}

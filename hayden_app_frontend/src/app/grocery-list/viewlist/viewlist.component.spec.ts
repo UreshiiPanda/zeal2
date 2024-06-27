@@ -1,16 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { GroceryListComponent } from './grocery-list.component';
-describe('GroceryListComponent', () => {
-  let component: GroceryListComponent;
-  let fixture: ComponentFixture<GroceryListComponent>;
+
+import { ViewlistComponent } from './viewlist.component';
+
+describe('ViewlistComponent', () => {
+  let component: ViewlistComponent;
+  let fixture: ComponentFixture<ViewlistComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GroceryListComponent]
+      imports: [ViewlistComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(GroceryListComponent);
+    fixture = TestBed.createComponent(ViewlistComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -19,4 +21,3 @@ describe('GroceryListComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-

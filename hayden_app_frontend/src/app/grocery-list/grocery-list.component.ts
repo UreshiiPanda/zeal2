@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input, output, EventEmitter, OnInit, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AutoCompleteModule } from 'primeng/autocomplete';
@@ -10,11 +10,10 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { CheckboxModule } from 'primeng/checkbox';
-
 import { DateTime } from 'luxon';
-
+import { FormGroup, FormControl, Validators }   from '@angular/forms';
 import { GroceryListService, Grocery, Tag } from '../grocery-list.service';
-
+import { ian_grocery, fruitsvegetable, dairyeggs, Drygoods } from './items';
 import { GroceryItemComponent } from './grocery-item/grocery-item.component';
 import { EditCreationPopupComponent } from './edit-creation-popup/edit-creation-popup.component';
 import { ActionButtonsComponent } from './action-buttons/action-buttons.component';
@@ -59,10 +58,31 @@ enum Sorts {
   styleUrl: './grocery-list.component.css'
 })
 export class GroceryListComponent {
+  
+getCategoryButtonClass(arg0: string): string|string[]|Set<string>|{ [klass: string]: any; }|null|undefined {
+throw new Error('Method not implemented.');
+}
+  groceries: ian_grocery[] = [];
   grocery_list_service = inject(GroceryListService);
   
   create_menu_visible: boolean = false;
+  router: any;
+isClicked: any;
+switchCategory: any;
+
+  switch_fruits_and_vegetables() {
+    this.groceries = fruitsvegetable
+  }
   
+  swith_dairy_eggs() {
+    this.groceries = dairyeggs
+  }
+
+  switch_Drygoods() {
+    this.groceries = Drygoods
+  }
+
+
   toggle_create_menu(): void {
     this.create_menu_visible = !this.create_menu_visible;
   }
@@ -70,7 +90,9 @@ export class GroceryListComponent {
   search_filter_sort(): Grocery[] {
     return this.sort(this.search(this.filter(this.grocery_list_service.get_grocery_list())));
   }
-  
+  navigateToNewPage(): void {
+    this.router.navigate(['/weather.component.html']);
+  }
   query: string | undefined;
   search(list: Grocery[]): Grocery[] {
     if (!this.query) return list;
@@ -81,6 +103,7 @@ export class GroceryListComponent {
       let name_match: boolean = item.assigned?.toLowerCase().includes(lower_query) ?? false;
       return grocery_match || name_match;
     });
+    
   }
 
   // TODO: something wrong with the date filters
@@ -149,3 +172,5 @@ function spaceship(a: comparable, b: comparable): number {
   else if (a > b) return 1;
   else return 0;
 }
+
+
