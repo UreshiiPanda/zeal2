@@ -1,4 +1,10 @@
 <!-- <h1>Hello World!</h1>
 <p>Use either &lt;app-tips-calculator/&gt; or &lt;app-grocery-list/&gt; in place of Hello World!</p> -->
 <!-- worry about routing later -->
-<app-grocery-list/>
+<!-- <app-grocery-list/> -->
+<!-- <app-weather/> -->
+
+<a routerLink="/grocery-list" routerLinkActive="active" ariaCurrentWhenActive="page">Grocery List</a>
+<a routerLink="/weather-dashboard" routerLinkActive="active" ariaCurrentWhenActive="page">Weather Dashboard</a>
+
+<router-outlet></router-outlet>
