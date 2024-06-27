@@ -1,8 +1,14 @@
-<div class="min-h-screen w-screen bg-black flex flex-col items-center justify-start font-sans overflow-hidden">
+<div class="min-h-screen w-screen bg-white flex flex-col items-center justify-start font-sans overflow-hidden">
     <nav class="flex justify-end gap-10 px-4 py-4 w-full text-sm sticky top-0 bg-grey z-10">
         <a href="https://2024-internship.vercel.app/tips.html" class="text-black text-xl hover:underline transition-colors">Tip Calculator</a>
         <a href="https://first-zeal-voyage.vercel.app/" class="text-black text-xl hover:underline transition-colors">Grocery List</a>
         <a href="https://jacobgiboney.github.io/Web_App_Zeal_Intern/spRPS/secretproject.html" class="text-black text-xl hover:underline transition-colors">Rock Paper Scissors</a>
         <a href="https://2024-internship.vercel.app/weather.html" class="text-black text-xl hover:underline transition-colors">Weather Dashboard</a>
     </nav>
+    <div class="flex flex-col items-center text-black text-2xl space-y-6 w-full max-w-4xl p-8 bg-gray-200 shadow-lg overflow-y-auto h-full relative ">
+        My Grocery List
+        <div *ngFor=" let grocery of grocery_list_service.get_groceries_inmylist()">
+            {{grocery.name}}
+        </div>
+    </div>
 </div>

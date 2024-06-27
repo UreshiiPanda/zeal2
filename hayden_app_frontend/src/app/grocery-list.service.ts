@@ -22,27 +22,44 @@ export const tag_options: Tag[] = [Tag.urgent, Tag.nonessential, Tag.meat, Tag.v
 })
 export class GroceryListService {
   private my_grocerylist: ian_grocery[] = [];
+  private dairyeggs: ian_grocery[] = dairyeggs;
+  private fruitsvegetable: ian_grocery[] = fruitsvegetable;
+  private Drygoods: ian_grocery[] = Drygoods;
 
   get_dairy_eggs() {
-    return dairyeggs;
+    return this.dairyeggs;
   }
 get_my_grocerylist(){
   return this.my_grocerylist
 }
 
 get_vegetables_fruits(){
-  return fruitsvegetable
+  return this.fruitsvegetable
 }
 
 get_household_items(){
-  return Drygoods
+  return this.Drygoods
 }
 
-add_grocery(grocery: ian_grocery) {
-    this.my_grocerylist.push(grocery);
-    console.log(grocery);
+add_grocery(added_grocery: ian_grocery) {
+    this.my_grocerylist.push(added_grocery);
+    for (let list of [this.dairyeggs, this.fruitsvegetable, this.Drygoods]) {
+      const index_of_grocery = list.findIndex(grocery => grocery.name === added_grocery.name);
+      if (index_of_grocery !== -1) {
+        list[index_of_grocery].inlist = true;
+      }
+    }
     // api call to add to list
   }
+get_groceries_inmylist(){
+  let groceries: ian_grocery[] = []
+  for (let list of [this.dairyeggs, this.fruitsvegetable, this.Drygoods]) {
+    list.forEach(grocery => {
+      if (grocery.inlist) groceries.push(grocery)
+    })
+  }
+  return groceries
+}
 
 purchased(){
 
