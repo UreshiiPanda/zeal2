@@ -12,11 +12,9 @@ import { DialogModule } from 'primeng/dialog';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DateTime } from 'luxon';
 import { FormGroup, FormControl, Validators }   from '@angular/forms';
-import { GroceryListService, Grocery, Tag } from '../grocery-list.service';
-import { ian_grocery, fruitsvegetable, dairyeggs, Drygoods } from './items';
-import { GroceryItemComponent } from './grocery-item/grocery-item.component';
-import { EditCreationPopupComponent } from './edit-creation-popup/edit-creation-popup.component';
-import { ActionButtonsComponent } from './action-buttons/action-buttons.component';
+import { GroceryListService, ian_grocery, Tag } from '../grocery-list.service';
+import { dairyeggs, fruitsvegetable, Drygoods } from './groceries';
+import { Router, ActivatedRoute } from '@angular/router';
 
 enum DueFilter {
   overdue = "Overdue",
@@ -50,118 +48,69 @@ enum Sorts {
     CardModule,
     ButtonModule,
     DialogModule,
-    GroceryItemComponent,
-    EditCreationPopupComponent,
-    ActionButtonsComponent,
   ],
+  
   templateUrl: './grocery-list.component.html',
   styleUrl: './grocery-list.component.css'
 })
-export class GroceryListComponent {
-  
-getCategoryButtonClass(arg0: string): string|string[]|Set<string>|{ [klass: string]: any; }|null|undefined {
-throw new Error('Method not implemented.');
-}
+export class GroceryListComponent implements OnInit {
+  searchQuery: string = '';
   groceries: ian_grocery[] = [];
+  filteredGroceries: ian_grocery[] = [];
   grocery_list_service = inject(GroceryListService);
-  
   create_menu_visible: boolean = false;
-  router: any;
-isClicked: any;
-switchCategory: any;
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.filteredGroceries = this.groceries;
+  }
 
   switch_fruits_and_vegetables() {
-    this.groceries = fruitsvegetable
+    this.groceries = fruitsvegetable;
   }
-  
+
   swith_dairy_eggs() {
-    this.groceries = dairyeggs
+    this.groceries = dairyeggs;
   }
 
   switch_Drygoods() {
-    this.groceries = Drygoods
+    this.groceries = Drygoods;
   }
-
 
   toggle_create_menu(): void {
     this.create_menu_visible = !this.create_menu_visible;
   }
 
-  search_filter_sort(): Grocery[] {
-    return this.sort(this.search(this.filter(this.grocery_list_service.get_grocery_list())));
+  search_groceries(): ian_grocery[] {
+    if (this.searchQuery) {
+      return this.groceries.filter(grocery => {
+        return grocery.name.toLowerCase().includes(this.searchQuery.toLowerCase());
+      })
+    } else return this.groceries;
   }
+
   navigateToNewPage(): void {
-    this.router.navigate(['/weather.component.html']);
-  }
-  query: string | undefined;
-  search(list: Grocery[]): Grocery[] {
-    if (!this.query) return list;
-    
-    const lower_query: string = this.query.toLowerCase();
-    return list.filter(item => {
-      let grocery_match: boolean = item.grocery.toLowerCase().includes(lower_query);
-      let name_match: boolean = item.assigned?.toLowerCase().includes(lower_query) ?? false;
-      return grocery_match || name_match;
-    });
-    
+    this.router.navigate(['/grocery-list/my-list']);
   }
 
-  // TODO: something wrong with the date filters
-  
-  due_options = [DueFilter.overdue, DueFilter.today, DueFilter.day, DueFilter.week];
-  due_filter: DueFilter | undefined;
-
-  tag_filters: Tag[] = [];
-  filter(list: Grocery[]): Grocery[] {
-    if (this.tag_filters.length === 0) return list;
-
-    const now: DateTime = DateTime.now();
-    return list.filter(item => {
-      let due_match: boolean = true;
-      if (item.pickup === null) {
-        due_match = false;
-      } else if (this.due_filter === DueFilter.overdue) {
-        due_match = now > item.pickup;
-      } else if (this.due_filter === DueFilter.today) {
-        due_match = now.day === item.pickup.day && now.month === item.pickup.month && now.year === item.pickup.year && now < item.pickup;
-      } else if (this.due_filter === DueFilter.day) {
-        const day: DateTime = now.plus({days: 1});
-        due_match = item.pickup < day && item.pickup > now;
-      } else if (this.due_filter === DueFilter.week) {
-        const week: DateTime = now.plus({days: 7});
-        due_match = item.pickup < week && item.pickup > now;
-      }
-      
-      let tag_match: boolean = true;
-      if (this.tag_filters.length !== 0) {
-        tag_match = this.tag_filters.some(tag_filter => item.tags.some(tag => tag_filter === tag));
-      }
-      
-      return due_match && tag_match;
-    });
+  addToList(grocery: ian_grocery): void {
+    grocery.inlist = true;
   }
 
-  sort_options: Sorts[] = [Sorts.alphabetical, Sorts.due_date, Sorts.days_til_due, Sorts.post_date, Sorts.assigned];
-  sort_selected: Sorts | undefined;
-  sort(list: Grocery[]): Grocery[] {
-    if (this.sort_selected === undefined) return list;
-    else if (this.sort_selected === Sorts.alphabetical) {
-      return list.sort((a, b) => spaceship(a.grocery.toLowerCase(), b.grocery.toLowerCase()));
-    } else if (this.sort_selected === Sorts.due_date) {
-      return list.sort((a, b) => spaceship(a.pickup, b.pickup));
-    } else if (this.sort_selected === Sorts.days_til_due) {
-      const now: DateTime = DateTime.now();
-      return list.sort((a, b) => {
-        return spaceship((a.pickup) ? now.diff(a.pickup).as('milliseconds') : undefined, 
-          (b.pickup) ? now.diff(b.pickup).as('milliseconds') : undefined);
-      });
-    } else if (this.sort_selected === Sorts.post_date) {
-      return list.sort((a, b) => spaceship(a.posted, b.posted));
-    } else {
-      return list.sort((a, b) => spaceship(a.assigned, b.assigned));
-    }
+  filtergroceriesinlist(groceries: ian_grocery[]): ian_grocery[] {
+    return groceries.filter(grocery => !grocery.inlist);
+  }
+
+  search_filter(groceries: ian_grocery[]): ian_grocery[] {
+    return this.filtergroceriesinlist(this.search_groceries())
+  }
+
+  debug(grocery: string): void {
+    console.log
   }
 }
+
 
 type comparable = string | DateTime | number | undefined | null;
 function spaceship(a: comparable, b: comparable): number {

@@ -1,50 +1,65 @@
-<div class="min-h-screen w-screen bg-white flex flex-col items-center justify-start font-sans overflow-hidden">
-    <nav class="flex justify-end gap-10 px-4 py-4 w-full text-sm sticky top-0 bg-grey z-10">
-        <a href="https://2024-internship.vercel.app/tips.html" class="text-black text-xl hover:underline transition-colors">Tip Calculator</a>
-        <a href="https://first-zeal-voyage.vercel.app/" class="text-black text-xl hover:underline transition-colors">Grocery List</a>
-        <a href="https://jacobgiboney.github.io/Web_App_Zeal_Intern/spRPS/secretproject.html" class="text-black text-xl hover:underline transition-colors">Rock Paper Scissors</a>
-        <a href="https://2024-internship.vercel.app/weather.html" class="text-black text-xl hover:underline transition-colors">Weather Dashboard</a>
-    </nav>
-    
-    <div class="flex flex-col items-center space-y-6 w-full max-w-4xl p-8 bg-gray-200 shadow-lg overflow-y-auto h-full relative">
-        <div class="w-full flex justify-between items-center mb-6">
-            <input type="text" placeholder="Search..." class="focus:outline-none focus:ring-2 focus:ring-indigo-500 duration-400 bg-white px-4 py-2 border-2 border-black rounded-full  border-transparent hover:border-black active:border-black text-black focus:ring-offset-2">
-            <button (click)="navigateToNewPage()" class="h-10 px-3 w-40 bg-white text-black font-semibold rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 whitespace-nowrap transition-all duration-500 border-2 border-transparent hover:border-black active:border-black inline-block">
-                View My List 📋
-            </button>
-        </div>        
-        <div class="flex flex-wrap justify-center gap-4 mt-6">
-            <button (click)="swith_dairy_eggs()" class="h-10 px-3 w-40 bg-white text-black font-semibold rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 whitespace-nowrap transition-all duration-500 border-2 border-transparent hover:border-black active:border-black inline-block">
-                Dairy and Eggs
-            </button>
-            <button (click)="switch_fruits_and_vegetables()" class="h-10 px-4 bg-white text-black font-semibold rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 whitespace-nowrap transition-all duration-500 border-2 border-transparent hover:border-black active:border-black inline-block">
-                Fruits and Vegetables
-            </button>
-            <button (click)="switch_Drygoods()" class="h-10 px-3 min-w-max bg-white text-black font-semibold rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 whitespace-nowrap transition-all duration-500 border-2 border-transparent hover:border-black active:border-black inline-block">
-                Household Items
-            </button>
-        </div>
-        
-        <div class="flex justify-center">
-            <div class="grid grid-cols-3 gap-6 min-w-max">
-                <div class="w-64" *ngFor="let grocery of groceries">
-                    <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow h-full">
-                        <div class="flex flex-col items-center justify-center h-full">
-                            <div class="flex-grow flex items-center justify-center">
-                                <img [src]="grocery.imageUrl"
-                                    width="200" 
-                                    height="200"
-                                    [alt]="grocery.name"
-                                    class="object-contain">
-                            </div>
-                            <div class="text-center mt-4">
-                                <p class="text-lg font-semibold text-gray-800">{{grocery.name}}</p>
-                                <p class="text-sm text-gray-600">{{grocery.price}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="min-h-screen w-screen bg-white flex flex-col items-center justify-start overflow-hidden"
+  style="font-family: 'Inter Tight', sans-serif;">
+  <nav class="flex justify-end gap-10 px-4 py-4 w-full text-sm sticky top-0 bg-grey z-10">
+    <a href="https://2024-internship.vercel.app/tips.html" class="text-black text-xl hover:underline transition-colors">Tip Calculator</a>
+    <a href="https://first-zeal-voyage.vercel.app/" class="text-black text-xl hover:underline transition-colors">Grocery List</a>
+    <a href="https://jacobgiboney.github.io/Web_App_Zeal_Intern/spRPS/secretproject.html" class="text-black text-xl hover:underline transition-colors">Rock Paper Scissors</a>
+    <a href="https://2024-internship.vercel.app/weather.html" class="text-black text-xl hover:underline transition-colors">Weather Dashboard</a>
+  </nav>
+  
+  <div class="flex flex-col items-center space-y-6 w-full max-w-4xl p-8 bg-gray-200 shadow-lg overflow-y-auto h-full relative">
+    <div class="w-full flex justify-between items-center mb-6">
+      <input 
+        type="text" 
+        placeholder="Search..." 
+        [(ngModel)]="searchQuery"
+        class="focus:outline-none focus:ring-2 focus:ring-indigo-500 duration-400 bg-white px-4 py-2 border-2 border-black rounded-full border-transparent hover:border-black active:border-black text-black focus:ring-offset-2">
+      <button 
+        (click)="navigateToNewPage()" 
+        class="h-10 px-3 w-40 bg-white text-black font-semibold rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 whitespace-nowrap transition-all duration-500 border-2 border-transparent hover:border-black active:border-black inline-block">
+        View My List 📋
+      </button>
+    </div>        
+    <div class="flex flex-wrap justify-center gap-4 mt-6">
+      <button 
+        (click)="swith_dairy_eggs()" 
+        class="h-10 px-3 w-40 bg-white text-black font-semibold rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 whitespace-nowrap transition-all duration-500 border-2 border-transparent hover:border-black active:border-black inline-block">
+        Dairy and Eggs
+      </button>
+      <button 
+        (click)="switch_fruits_and_vegetables()" 
+        class="h-10 px-4 bg-white text-black font-semibold rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 whitespace-nowrap transition-all duration-500 border-2 border-transparent hover:border-black active:border-black inline-block">
+        Fruits and Vegetables
+      </button>
+      <button 
+        (click)="switch_Drygoods()" 
+        class="h-10 px-3 min-w-max bg-white text-black font-semibold rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 whitespace-nowrap transition-all duration-500 border-2 border-transparent hover:border-black active:border-black inline-block">
+        Household Items
+      </button>
     </div>
+    
+    <div class="flex justify-center">
+      <div class="grid grid-cols-3 gap-6 min-w-max">
+        <div class="w-64" *ngFor="let grocery of search_filter(groceries)" (click)="grocery_list_service.add_grocery(grocery)">
+          <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow h-full">
+            <div class="flex flex-col items-center justify-center h-full">
+              <div class="flex-grow flex items-center justify-center">
+                <img 
+                  [src]="grocery.imageUrl"
+                  width="200" 
+                  height="200"
+                  [alt]="grocery.name"
+                  class="object-contain">
+              </div>
+              <div class="text-center mt-4"> 
+                <p class="text-lg font-semibold text-gray-800">{{grocery.name}}</p>
+                <p class="text-sm text-gray-600">{{grocery.price}}</p>
+                <p class="text-sm text-gray-600">Status: {{grocery.inlist}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
