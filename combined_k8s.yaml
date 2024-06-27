@@ -16,6 +16,7 @@ spec:
       containers:
       - name: angular-app
         image: gcr.io/zeal-intern/angular-app:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         resources:    
@@ -54,6 +55,7 @@ spec:
       containers:
       - name: html-css-js-app1
         image: gcr.io/zeal-intern/html-css-js-app1:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         resources:    
@@ -93,6 +95,7 @@ spec:
       containers:
       - name: html-css-js-app2
         image: gcr.io/zeal-intern/html-css-js-app2:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         resources:    
@@ -132,6 +135,7 @@ spec:
       containers:
       - name: node-backend
         image: gcr.io/zeal-intern/node-backend:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 4000
         envFrom:
