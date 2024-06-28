@@ -11,10 +11,10 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DateTime } from 'luxon';
-import { FormGroup, FormControl, Validators }   from '@angular/forms';
-import { GroceryListService, ian_grocery, Tag } from '../grocery-list.service';
+import { GroceryListService } from '../grocery-list.service';
 import { dairyeggs, fruitsvegetable, Drygoods } from './groceries';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { Grocery } from './groceries';
 
 enum DueFilter {
   overdue = "Overdue",
@@ -55,8 +55,8 @@ enum Sorts {
 })
 export class GroceryListComponent implements OnInit {
   searchQuery: string = '';
-  groceries: ian_grocery[] = [];
-  filteredGroceries: ian_grocery[] = [];
+  groceries: Grocery[] = [];
+  filteredGroceries: Grocery[] = [];
   grocery_list_service = inject(GroceryListService);
   create_menu_visible: boolean = false;
   hasStrikethrough: { [key: number]: boolean } = {}
@@ -87,7 +87,7 @@ export class GroceryListComponent implements OnInit {
     this.create_menu_visible = !this.create_menu_visible;
   }
 
-  search_groceries(): ian_grocery[] {
+  search_groceries(): Grocery[] {
     if (this.searchQuery) {
       return this.groceries.filter(grocery => {
         return grocery.name.toLowerCase().includes(this.searchQuery.toLowerCase());
@@ -99,15 +99,15 @@ export class GroceryListComponent implements OnInit {
     this.router.navigate(['/grocery-list/my-list']);
   }
 
-  addToList(grocery: ian_grocery): void {
+  addToList(grocery: Grocery): void {
     grocery.inlist = true;
   }
 
-  filtergroceriesinlist(groceries: ian_grocery[]): ian_grocery[] {
+  filtergroceriesinlist(groceries: Grocery[]): Grocery[] {
     return groceries.filter(grocery => !grocery.inlist);
   }
 
-  search_filter(groceries: ian_grocery[]): ian_grocery[] {
+  search_filter(groceries: Grocery[]): Grocery[] {
     return this.filtergroceriesinlist(this.search_groceries())
   }
 

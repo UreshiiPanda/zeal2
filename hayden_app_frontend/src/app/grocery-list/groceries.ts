@@ -1,10 +1,11 @@
-export type ian_grocery = {
+export type Grocery = {
     inlist: boolean;
     name: string;
     imageUrl: string;
     price: string;
-  };
-export const Drygoods: ian_grocery[] = [
+};
+
+export const Drygoods: Grocery[] = [
   {
     name: "Central Market Fresh Angel Hair Pasta",
     imageUrl: "https://www.instacart.com/image-server/514x514/filters:fill(FFF,true):format(jpg)/d2lnr5mha7bycj.cloudfront.net/product-image/file/large_3fbc761d-0729-4fcf-b9e6-152ce148947c.jpeg",
@@ -241,7 +242,7 @@ export const Drygoods: ian_grocery[] = [
   },
 ]
   
-export const dairyeggs: ian_grocery[] = [
+export const dairyeggs: Grocery[] = [
   {
     name: "Ellonos Greek Yogurt, Passionfruit",
     imageUrl:
@@ -442,7 +443,7 @@ export const dairyeggs: ian_grocery[] = [
     inlist: false 
   },
 ];
-export const fruitsvegetable: ian_grocery[] = [
+export const fruitsvegetable: Grocery[] = [
     {
       name: "Strawberries",
       imageUrl: "https://www.instacart.com/image-server/394x394/filters:fill(FFF,true):format(jpg)/d2lnr5mha7bycj.cloudfront.net/product-image/file/large_afde5a39-ddfe-4348-a306-9e670d1afab6.jpg",

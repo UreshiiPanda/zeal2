@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GroceryListService, ian_grocery } from '../../grocery-list.service';
+import { GroceryListService } from '../../grocery-list.service';
+import { Grocery } from '../groceries';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 @Component({
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./viewlist.component.css']
 })
 export class ViewlistComponent implements OnInit {
-  groceries: ian_grocery[] = [];
+  groceries: Grocery[] = [];
   hasStrikethrough: { [key: string]: boolean } = {};
 
   constructor(private grocery_list_service: GroceryListService, private router: Router) {}
