@@ -17,12 +17,26 @@
              ariaCurrentWhenActive="page">
             Weather Dashboard
           </a>
+          <a routerLink="/tip-calculator" 
+             routerLinkActive="bg-blue-500" 
+             [routerLinkActiveOptions]="{exact: true}"
+             class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out"
+             ariaCurrentWhenActive="page">
+            Tip Calculator
+          </a>
+          <a routerLink="/rock-paper-scissors" 
+             routerLinkActive="bg-blue-500" 
+             [routerLinkActiveOptions]="{exact: true}"
+             class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out"
+             ariaCurrentWhenActive="page">
+            Rock Paper Scissors
+          </a>
         </div>
       </div>
     </nav>
   
     <main class="flex-grow bg-gray-100 overflow-auto">
-      <div class="container mx-auto p-4 h-full">
+      <div class="container h-full">
         <router-outlet></router-outlet>
       </div>
     </main>

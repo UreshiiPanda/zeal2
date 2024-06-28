@@ -19,13 +19,13 @@ export class PrecipitationComponent {
   private icon_subscription!: Subscription;
 
 
-  icon!: string;
+  icons!: string[];
   days!: string[];
   
   ngOnInit() {
     const now: DateTime = DateTime.now();
     this.days = Array.from({ length: 7 }, (_, i) => now.plus({days: i}).toFormat("ccc"));
-    this.icon_subscription = this.weather_service.get_image('icon', 'forecast').subscribe(todaysicon => this.icon = todaysicon[0])
+    this.icon_subscription = this.weather_service.get_image('icon', 'forecast').subscribe(todaysicon => this.icons = todaysicon)
 
     this.precipitation_probabilities_subscription = this.weather_service.get_precipitation_probabilities().subscribe(precipitation_probabilities => this.precipitation_probabilities = precipitation_probabilities);
   }
