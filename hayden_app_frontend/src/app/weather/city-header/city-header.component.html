@@ -15,10 +15,14 @@
                 <i class="pi pi-search" style="font-size: 0.8rem"></i>
             </button>
         </div>
+
         <div class="">
             <p class="text-2xl text-black">{{get_time()}}</p>
             <p class="text-3xl text-black">{{city_state}}</p>
         </div>
     </div>
-    <p class="text-7xl font-bold text-black ml-auto">{{temperature}}°</p>
+    <div>
+        <img [src]="icon" [class]="icon">
+        <p class="text-7xl font-bold text-black ml-auto">{{temperature}}°</p>
+    </div>
 </div>

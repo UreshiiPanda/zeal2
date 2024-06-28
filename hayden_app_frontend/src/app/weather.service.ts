@@ -302,14 +302,14 @@ export class WeatherService {
         else weather_codes = [data.current.weather_code];
 
         return weather_codes.map(code => {
-          let icon_number: number;
+          let icon_number: string;
           let image_url: string;
           let night: boolean = data.current.is_day === 0;
           let cold: boolean = data.current.temperature_2m <= 35;
 
           if (code === 0 || code === 1) {
             // Clear Skies
-            icon_number = 1;
+            icon_number = '01';
             if (night && cold) image_url = pick_random(clear_skies_night_cold);
             else if (night && !cold) image_url = pick_random(clear_skies_night_hot);
             else if (!night && cold) image_url = pick_random(clear_skies_day_cold);
@@ -317,7 +317,7 @@ export class WeatherService {
 
           } else if (code >= 3 && code <= 9 || code == 12 || code >= 14 && code <= 16 || code === 18 || code === 20 || code === 21 || code === 25) {
             // CLoudy
-            icon_number = 3;
+            icon_number = '03';
             if (night && cold) image_url = pick_random(cloudy_skies_night_cold);
             else if (night && !cold) image_url = pick_random(cloudy_skies_night_hot);
             else if (!night && cold) image_url = pick_random(cloudy_skies_day_cold);
@@ -325,31 +325,31 @@ export class WeatherService {
 
           } else if (code === 10 || code === 11 || code === 27 || code >= 40 && code <= 49) {
             // Haze
-            icon_number = 50;
+            icon_number = '50';
             image_url = pick_random(fog)
 
           } else if (code === 13 || code === 17 || code === 18 || code === 29 || code >= 95 && code <= 99) {
             // Thunderstorm
-            icon_number = 11;
+            icon_number = '11';
             if (night) image_url = pick_random(thunderstorm_night);
             else image_url = pick_random(thunderstorm_day);
 
           } else if (code >= 22 && code <= 24 || code === 26 || code === 56 || code === 57 || code === 66 || code === 67 || code >= 70 && code <= 79 || code >= 83 && code <= 88 || code === 93 || code === 94) {
             // snow
-            icon_number = 13;
+            icon_number = '13';
             if (night) image_url = pick_random(snow_night);
             else image_url = pick_random(snow_day);
 
           } else if (code >= 20 && code <= 21 || code === 25 || code === 27 || code >= 50 && code <= 55 || code >= 58 && code <= 59 || code >= 60 && code <= 65 || code >= 68 && code >= 69 || code >= 80 && code <= 82 || code >= 89 && code <= 92) {
             // rain
             console.log("rain");
-            icon_number = 9;
+            icon_number = '09;'
             if (night) image_url = pick_random(rain_night);
             else image_url = pick_random(rain_day);
 
           } else {
             // default to clear skies
-            icon_number = 1;
+            icon_number = '01;'
             image_url = pick_random(clear_skies_day_hot);
 
           }
