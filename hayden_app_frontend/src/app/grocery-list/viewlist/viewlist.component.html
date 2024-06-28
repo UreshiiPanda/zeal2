@@ -1,8 +1,36 @@
-<div class="min-h-screen w-screen bg-black flex flex-col items-center justify-start font-sans overflow-hidden">
+<div class="min-h-screen w-screen bg-white flex flex-col items-center justify-start overflow-hidden" style="font-family: 'Inter Tight', sans-serif;">
     <nav class="flex justify-end gap-10 px-4 py-4 w-full text-sm sticky top-0 bg-grey z-10">
         <a href="https://2024-internship.vercel.app/tips.html" class="text-black text-xl hover:underline transition-colors">Tip Calculator</a>
         <a href="https://first-zeal-voyage.vercel.app/" class="text-black text-xl hover:underline transition-colors">Grocery List</a>
         <a href="https://jacobgiboney.github.io/Web_App_Zeal_Intern/spRPS/secretproject.html" class="text-black text-xl hover:underline transition-colors">Rock Paper Scissors</a>
         <a href="https://2024-internship.vercel.app/weather.html" class="text-black text-xl hover:underline transition-colors">Weather Dashboard</a>
     </nav>
+    <div class="flex flex-col items-center space-y-6 w-full max-w-4xl p-8 bg-gray-200 shadow-lg overflow-y-auto h-full relative rounded-t-3xl">
+        <div class="w-full flex justify-between items-center mb-6 relative">
+            <button 
+                (click)="navigateToNewPage()" 
+                class="absolute left-0 top-0 h-10 px-3 w-40 bg-white text-black font-semibold rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 whitespace-nowrap transition-all duration-500 border-2 border-transparent hover:border-black active:border-black inline-block">
+                ← Back
+            </button>
+            <h2 class="text-3xl font-bold text-black mx-auto">My Grocery List</h2>
+            <button 
+                (click)="clearList()" 
+                class="absolute right-0 top-0 h-10 px-3 w-40 bg-red-500 text-white font-semibold rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 whitespace-nowrap transition-all duration-500 border-2 border-transparent hover:border-black active:border-black inline-block">
+                Clear List
+            </button>
+        </div>
+        <div *ngFor="let grocery of groceries" class="w-full flex justify-between items-center bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+            <span [class.line-through]="hasStrikethrough[grocery.name]" class="flex-grow text-lg font-semibold text-gray-800">
+                •{{grocery.name}} {{grocery.price}}
+            </span>
+            <div class="flex">
+                <button (click)="toggleStrikethrough(grocery.name)" class="h-10 px-3 min-w-max bg-white text-black font-semibold rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 whitespace-nowrap transition-all duration-500 border-2 border-transparent hover:border-black active:border-black inline-block ml-2">
+                    ✓
+                </button>
+                <button (click)="deleteItem(grocery.name)" class="h-10 px-3 min-w-max bg-white text-black font-semibold rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 whitespace-nowrap transition-all duration-500 border-2 border-transparent hover:border-black active:border-black inline-block ml-2">
+                    🗑️
+                </button>
+            </div>
+        </div>
+    </div>
 </div>

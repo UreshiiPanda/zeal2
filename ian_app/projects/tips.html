@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="tips.css">
+    <script src="https://cdn.jsdelivr.net/npm/luxon@1.27.0/build/global/luxon.min.js"></script>
     <script src="tips.js"></script>
 </head>
 <body>
@@ -22,44 +23,43 @@
             </div>
         </div>
         <div class="w-fill min-h-full flex justify-center bg-gray-200 mx-32 rounded-3xl p-6 gap-16">
-            <div class="flex flex-col bg-white rounded-md p-8 justify-center items-center">
+            <div class="flex flex-col bg-white rounded-md p-8 justify-center items-center gap-8">
                 
-                <div class="flex flex-col items-center">
-                    <label class="text-3xl" for="billAmount">Total Bill:</label>
-                    <input type="number" id="billAmount" min="0" step="0.01" oninput="validateDecimalPlaces(this)" placeholder="Ex: 34.09">
+                <div class="flex flex-col items-center gap-4">
+                    <label class="text-3xl" for="bill-amount">Total Bill:</label>
+                    <input type="text" id="bill-amount" oninput="allow_decimal(event)" placeholder="Ex: 34.09">
                 </div>
                 
-                <div class="flex flex-col items-center">
+                <div class="flex flex-col items-center gap-4">
                     <label class="text-3xl" for="tip">Tip Percentage (%)</label>
+                    <input type="text" id="tip-percentage" placeholder="Ex: 50" oninput="allow_integer(event)"></input>
                     <div class="tip-buttons mt-2 gap-2">
                         <button class="bg-pink-400 p-3 rounded-md"
-                        onclick="calculateTip(15)">15%</button>
+                        onclick="tip_button_pressed(15)">15%</button>
                         <button class="bg-pink-400 p-3 rounded-md"
-                        onclick="calculateTip(20)">20%</button>
+                        onclick="tip_button_pressed(20)">20%</button>
                         <button class="bg-pink-400 p-3 rounded-md"
-                        onclick="calculateTip(25)">25%</button>
+                        onclick="tip_button_pressed(25)">25%</button>
                         <button class="bg-pink-400 p-3 rounded-md"
-                        onclick="calculateTip(30)">30%</button>
+                        onclick="tip_button_pressed(30)">30%</button>
                     </div>
                 </div>
                 
-                <div class="flex flex-col items-center">
-                    <label class="text-3xl" for="taxPercentage">State: <span class="text-sm">*tax</span></label>
-                    <input type="number" id="taxPercentage" min="0" max="100" step="0.01" oninput="validateDecimalPlaces(this)" placeholder="If no tax, input 0">
+                <div class="flex flex-col items-center gap-4">
+                    <label class="text-3xl" for="tax-percentage">Tax %:</label>
+                    <input type="text" id="tax-percentage" oninput="allow_decimal(event)" placeholder="If no tax, input 0">
+                    <div class="flex flex-row gap-3">
+                        <label class="text-md" for="tax-on-tip">Tip on Tax?</label>
+                        <input type="checkbox" id="tax-on-tip" onchange="toggle_tax_on_tip()">
+                    </div>
                 </div>
 
                 <div class="flex flex-col items-center">
-                    <label class="text-3xl" for="taxPercentage">Number of People:</label>
-                    <input type="number" id="taxPercentage" min="0" max="100" step="0.01" oninput="validateDecimalPlaces(this)" placeholder="If no tax, input 0">
+                    <label class="text-3xl" for="people">Number of People:</label>
+                    <input id="people" oninput="allow_integer(event)" placeholder="Default 1">
                 </div>
 
-                <div id="customTipContainer" style="display: none;">
-                    <label for="customTip">Custom Tip (%):</label>
-                    <input type="number" id="customTip" min="0" max="100" step="0.01" oninput="validateDecimalPlaces(this)">
-                    <button onclick="calculateCustomTip()">Apply</button>
-                </div>
-
-                <button class="w-full bg-pink-400 p-3 rounded-md">Calculate</button>
+                <button class="w-full bg-pink-400 p-3 rounded-md" onclick="calculate_tip()">Calculate</button>
             </div>
 
             <div id="receipt" class="flex flex-col bg-white p-4 font-recipt">
@@ -74,22 +74,22 @@
                     <p>Dallas, TX 75201</p>
                 </div>
                 <div class="mt-3">
-                    <p>Friday 6/23/2024 11:30 AM</p>
-                    <p>ID: 9283bc9023ca</p>
+                    <p id="date">Friday 6/23/2024 11:30 AM</p>
+                    <p>ID: <span id="transaction-id"></span></p>
                 </div>
 
                 <div class="mt-12 font-bold">
                     <div class="flex flex-row w-fill justify-between">
                         <p>Subtotal</p>
-                        <p>USD$ <span>25.53</span></p>
+                        <p>USD$ <span id="subtotal">0.00</span></p>
                     </div>
                     <div class="flex flex-row w-fill justify-between">
-                        <p>Tax (WI)</p>
-                        <p>3.20</p>
+                        <p>Tax (<span id="tax-percentage">0</span>%)</p>
+                        <p id="tax">0.00</p>
                     </div>
                     <div class="flex flex-row w-fill justify-between">
-                        <p>Tip (<span>20</span>%)</p>
-                        <p>8.32</p>
+                        <p>Tip<span class="hidden" id="asterik">*</span> (<span id="tip-percentage">0</span>%)</p>
+                        <p id="tip">0.00</p>
                     </div>
                 </div>
 
@@ -97,8 +97,15 @@
 
                 <div class="flex flex-row w-fill justify-between font-bold">
                     <p>Total</p>
-                    <p>37.05</p>
+                    <p id="total">0.00</p>
                 </div>
+
+                <div class="flex flex-row w-fill justify-between font-bold mt-4 hidden" id="split-tip">
+                    <p>Your Tip</p>
+                    <p id="your-tip">0.00</p>
+                </div>
+
+                <p class="text-xs mt-4 hidden" id="disclaimer">* tip calculated on tax</p>
     
                 <div class="flex flex-col items-center mt-6">
                     <p>Thank you from</p>
