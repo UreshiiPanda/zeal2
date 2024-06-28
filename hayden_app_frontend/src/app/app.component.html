@@ -3,29 +3,31 @@
       <div class="container mx-auto flex justify-between items-center">
         <div class="text-white font-bold text-xl">My App</div>
         <div class="space-x-4">
-          <a routerLink="/grocery-list" 
-             routerLinkActive="bg-blue-500" 
+          <a routerLink="/grocery-list"
+             routerLinkActive="bg-blue-500"
              [routerLinkActiveOptions]="{exact: true}"
              class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out"
              ariaCurrentWhenActive="page">
             Grocery List
           </a>
-          <a routerLink="/weather-dashboard" 
-             routerLinkActive="bg-blue-500" 
+          <a routerLink="/weather-dashboard"
+             routerLinkActive="bg-blue-500"
              [routerLinkActiveOptions]="{exact: true}"
              class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out"
              ariaCurrentWhenActive="page">
             Weather Dashboard
           </a>
-          <a routerLink="/tip-calculator" 
-             routerLinkActive="bg-blue-500" 
+          <!--   <a routerLink="/tip-calculator"  -->
+          <a href="http://34.36.117.223/app1/tips.html"
+             routerLinkActive="bg-blue-500"
              [routerLinkActiveOptions]="{exact: true}"
              class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out"
              ariaCurrentWhenActive="page">
             Tip Calculator
           </a>
-          <a routerLink="/rock-paper-scissors" 
-             routerLinkActive="bg-blue-500" 
+       <!--   <a routerLink="/rock-paper-scissors"  -->
+          <a href="http://34.36.117.223/app2/spRPS/secretproject.html"
+             routerLinkActive="bg-blue-500"
              [routerLinkActiveOptions]="{exact: true}"
              class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out"
              ariaCurrentWhenActive="page">
@@ -34,7 +36,7 @@
         </div>
       </div>
     </nav>
-  
+
     <main class="flex-grow bg-gray-100 overflow-auto">
       <div class="container h-full">
         <router-outlet></router-outlet>

@@ -1,0 +1,194 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular-app
+  template:
+    metadata:
+      labels:
+        app: angular-app
+    spec:
+      containers:
+      - name: angular-app
+        image: gcr.io/zeal-intern/angular-app:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:    
+          requests:
+            cpu: 250m
+            memory: 512Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-app
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+  selector:
+    app: angular-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: html-css-js-app1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: html-css-js-app1
+  template:
+    metadata:
+      labels:
+        app: html-css-js-app1
+    spec:
+      containers:
+      - name: html-css-js-app1
+        image: gcr.io/zeal-intern/html-css-js-app1:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:    
+          requests:
+            cpu: 250m
+            memory: 512Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: html-css-js-app1
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+  selector:
+    app: html-css-js-app1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: html-css-js-app2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: html-css-js-app2
+  template:
+    metadata:
+      labels:
+        app: html-css-js-app2
+    spec:
+      containers:
+      - name: html-css-js-app2
+        image: gcr.io/zeal-intern/html-css-js-app2:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:    
+          requests:
+            cpu: 250m
+            memory: 512Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: html-css-js-app2
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+  selector:
+    app: html-css-js-app2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-backend
+  template:
+    metadata:
+      labels:
+        app: node-backend
+    spec:
+      containers:
+      - name: node-backend
+        image: gcr.io/zeal-intern/node-backend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 4000
+        envFrom:
+        - secretRef:
+            name: tidb-secrets
+        resources:    
+          requests:
+            cpu: 250m
+            memory: 512Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-backend
+spec:
+  type: ClusterIP
+  ports:
+  - port: 4000
+  selector:
+    app: node-backend
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /app1
+        pathType: Prefix
+        backend:
+          service:
+            name: html-css-js-app1
+            port: 
+              number: 80
+      - path: /app2
+        pathType: Prefix
+        backend:
+          service:
+            name: html-css-js-app2
+            port: 
+              number: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: angular-app
+            port: 
+              number: 80
