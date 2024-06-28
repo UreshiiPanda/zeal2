@@ -35,12 +35,8 @@ app.get("/grocery-list", async (req, res) => {
         SELECT 
             grocery,
             quantity,
-            units,
-            tags,
-            posted,
-            pickup,
-            assigned,
-            completed
+            completed,
+            image_url
         FROM
             groceries
         WHERE
@@ -57,14 +53,10 @@ app.post("/grocery-list", async (req, res) => {
     const user_id = req.headers['user_id'];
     const grocery = req.headers['grocery'];
     const quantity = req.headers['quantity'];
-    const units = req.headers['units'];
-    const tags = req.headers['tags'];
-    const posted = req.headers['posted'];
-    const pickup = req.headers['pickup'];
-    const assigned = req.headers['assigned'];
     const completed = req.headers['completed'];
+    const image_url = req.headers['image_url'];
 
-    if (user_id === undefined || grocery === undefined || quantity === undefined || units === undefined || tags === undefined || posted === undefined || pickup === undefined || assigned === undefined || completed === undefined)
+    if (user_id === undefined || grocery === undefined || quantity === undefined || completed === undefined || image_url === undefined)
         res.status(400).send({ error: "specify user_id, grocery, quantity, units, tags, posted, pickup, assigned, and completed in the headers" })
 
     const sql = `
@@ -72,18 +64,10 @@ app.post("/grocery-list", async (req, res) => {
             user_id,
             grocery,
             quantity,
-            units,
-            tags,
-            posted,
-            pickup,
-            assigned,
-            completed
+            completed,
+            image_url
         )
         VALUES (
-            ?,
-            ?,
-            ?,
-            ?,
             ?,
             ?,
             ?,
@@ -91,7 +75,7 @@ app.post("/grocery-list", async (req, res) => {
             ?
         )
     `;
-    const params = [user_id, grocery, quantity, units, tags, posted, pickup, assigned, completed];
+    const params = [user_id, grocery, quantity, completed, image_url];
 
     tidb_query(sql, params)
         .then(_ => res.status(200).send("success"))
@@ -102,14 +86,10 @@ app.put("/grocery-list", async (req, res) => {
     const user_id = req.headers['user_id'];
     const grocery = req.headers['grocery'];
     const quantity = req.headers['quantity'];
-    const units = req.headers['units'];
-    const tags = req.headers['tags'];
-    const posted = req.headers['posted'];
-    const pickup = req.headers['pickup'];
-    const assigned = req.headers['assigned'];
     const completed = req.headers['completed'];
+    const image_url = req.headers['image_url'];
 
-    if (user_id === undefined || grocery === undefined || quantity === undefined || units === undefined || tags === undefined || posted === undefined || pickup === undefined || assigned === undefined || completed === undefined)
+    if (user_id === undefined || grocery === undefined || quantity === undefined || completed === undefined || image_url === undefined)
         res.status(400).send({ error: "specify user_id, grocery, quantity, units, tags, posted, pickup, assigned, and completed in the headers" })
 
     const sql = `
@@ -117,16 +97,12 @@ app.put("/grocery-list", async (req, res) => {
         SET
             grocery = ?,
             quantity = ?,
-            units = ?,
-            tags = ?,
-            pickup = ?,
-            assigned = ?,
-            completed = ?
+            completed = ?,
+            image_url = ?
         WHERE
-            user_id = ? AND
-            posted = ?
+            user_id = ?
     `;
-    const params = [grocery, quantity, units, tags, pickup, assigned, completed, user_id, posted];
+    const params = [grocery, quantity, completed, image_url, user_id];
 
     tidb_query(sql, params)
         .then(_ => res.status(200).send("success"))
@@ -135,9 +111,9 @@ app.put("/grocery-list", async (req, res) => {
 
 app.delete("/grocery-list", async (req, res) => {
     const user_id = req.headers['user_id'];
-    const posted = req.headers['posted'];
+    const grocery = req.headers['grocery'];
 
-    if (user_id === undefined || posted === undefined)
+    if (user_id === undefined || grocery === undefined)
         res.status(400).send({ error: "specify user_id and posted in the headers" });
 
     const sql = `
@@ -145,7 +121,7 @@ app.delete("/grocery-list", async (req, res) => {
             groceries
         WHERE
             user_id = ? AND
-            posted = ?
+            grocery = ?
     `;
     const params = [user_id, posted];
 
@@ -154,6 +130,24 @@ app.delete("/grocery-list", async (req, res) => {
         .catch(err => res.status(400).send({ error: err }));
 });
 
+app.delete("/grocery-list/all", async (req, res) => {
+    const user_id = req.headers['user_id'];
+
+    if (user_id === undefined)
+        res.status(400).send({ error: "specify user_id and posted in the headers" });
+
+    const sql = `
+        DELETE FROM
+            groceries
+        WHERE
+            user_id = ?
+    `;
+    const params = [user_id];
+
+    tidb_query(sql, params)
+        .then(_ => res.status(200).send("success"))
+        .catch(err => res.status(400).send({ error: err }));
+})
 
 
 // ROCK PAPER SCISSORS API
