@@ -25,6 +25,7 @@ export class GroceryListService {
   private dairyeggs: ian_grocery[] = dairyeggs;
   private fruitsvegetable: ian_grocery[] = fruitsvegetable;
   private Drygoods: ian_grocery[] = Drygoods;
+  hasStrikethrough: boolean = false;
 
   get_dairy_eggs() {
     return this.dairyeggs;
@@ -41,6 +42,9 @@ get_household_items(){
   return this.Drygoods
 }
 
+toggleStrikethrough(): void {  // Add this method
+  this.hasStrikethrough = !this.hasStrikethrough;
+}
 add_grocery(added_grocery: ian_grocery) {
     this.my_grocerylist.push(added_grocery);
     for (let list of [this.dairyeggs, this.fruitsvegetable, this.Drygoods]) {

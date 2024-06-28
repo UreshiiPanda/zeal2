@@ -59,8 +59,13 @@ export class GroceryListComponent implements OnInit {
   filteredGroceries: ian_grocery[] = [];
   grocery_list_service = inject(GroceryListService);
   create_menu_visible: boolean = false;
+  hasStrikethrough: { [key: number]: boolean } = {}
 
   constructor(private router: Router) {}
+
+  toggleStrikethrough(index: number): void {
+    this.hasStrikethrough[index] = !this.hasStrikethrough[index];
+  }
 
   ngOnInit(): void {
     this.filteredGroceries = this.groceries;
